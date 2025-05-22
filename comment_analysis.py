@@ -8,8 +8,9 @@ import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 
-YOUTUBE_API_KEY = "AIzaSyCVgFClTVqUKv6QhmR7KZtHrIJ_OrFivpI"
+YOUTUBE_API_KEY = "YOUR_YOUTUBE_API_KEY" #Replace with your youtube api key
 
+#extracting channel id from the url
 def extract_channel_id(url: str):
     parsed_url = urlparse(url)
     path = parsed_url.path
@@ -38,6 +39,7 @@ def get_channel_id_by_username(username):
         return response["items"][0]["id"]
     return None
 
+#to return the channel handle for comment analysis
 def get_channel_id_by_handle(handle):
     youtube = googleapiclient.discovery.build("youtube", "v3", developerKey=YOUTUBE_API_KEY)
     request = youtube.search().list(part="snippet", q=handle, type="channel", maxResults=5)
@@ -53,6 +55,7 @@ def get_channel_id_by_handle(handle):
         return response["items"][0]["snippet"]["channelId"]
     return None
 
+#to extract latest video ids
 def get_latest_video_ids(channel_id, max_results=5):
     youtube = googleapiclient.discovery.build("youtube", "v3", developerKey=YOUTUBE_API_KEY)
     request = youtube.search().list(part="snippet", channelId=channel_id, order="date", maxResults=max_results)
@@ -68,6 +71,7 @@ def get_latest_video_ids(channel_id, max_results=5):
     ]
     return video_data
 
+#to return video comments
 def get_video_comments(video_id, max_comments=50):
     youtube = googleapiclient.discovery.build("youtube", "v3", developerKey=YOUTUBE_API_KEY)
     comments = []
@@ -81,6 +85,7 @@ def get_video_comments(video_id, max_comments=50):
         pass
     return comments
 
+#sentiment analysis of comments
 def classify_sentiment(comments):
     positive, negative = 0, 0
     for comment in comments:
@@ -92,6 +97,7 @@ def classify_sentiment(comments):
             negative += 1
     return positive, negative
 
+#to return brief analysis of comments as positive and negative
 def get_youtube_analysis(channel_url):
     channel_id = extract_channel_id(channel_url)
     if not channel_id:
