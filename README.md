@@ -1,6 +1,3 @@
-# TubeTactix.ai
-Master your Youtube Content with AI-Driven Strategy
-
 #  **TubeTactix.ai 📈** 
 ### Master your Youtube Content with AI-Driven Strategy
 ## Overview 
@@ -65,18 +62,18 @@ The system leverages the **YouTube Data API v3** to fetch video metadata and com
 ✦ Results are displayed with video titles, sentiment stats, and strategic recommendations.
 
 ## Tools & Technologies Used
-✦ Programming Language: Python
+✦ Programming Language☞: Python
 
-✦ APIs: YouTube Data API v3, Groq API for LLaMA 3
+✦ APIs🔗🌐: YouTube Data API v3, Groq API for LLaMA 3
 
-✦ NLP: TextBlob (sentiment analysis), LLaMA 3 (content strategy generation)
+✦ 💬NLP: TextBlob (sentiment analysis), LLaMA 3 (content strategy generation)
 
 ✦ Web Framework: Streamlit
 
 ✦ Data Processing: Pandas, Regex, Collections
 
 ## Code Snippets
-###Fetching Video Comments & Sentiment Analysis
+Fetching Video Comments & Sentiment Analysis
 
     from textblob import TextBlob
     from googleapiclient.discovery import build
@@ -91,7 +88,7 @@ The system leverages the **YouTube Data API v3** to fetch video metadata and com
                 negative += 1
         return positive, negative
         
-###Generating Content Strategy via Groq LLaMA 3
+Generating Content Strategy via Groq LLaMA 3
 
     import requests
     
