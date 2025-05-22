@@ -6,8 +6,8 @@ from googleapiclient.discovery import build
 from groq import Groq
 
 
-groq_api_key = "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"
-# --- Groq LLaMA API call ---
+groq_api_key = "YOUR_GROQ_API_KEY"#replace with your groq api key
+# Groq LLaMA API call
 def groq_model(prompt: str, max_tokens=300):
     client = Groq(api_key=groq_api_key)
     response = client.chat.completions.create(
@@ -23,7 +23,7 @@ def groq_model(prompt: str, max_tokens=300):
     result=result.replace("**","")
     return result  
 
-# --- BERTopic topic extraction ---
+# BERTopic topic extraction
 from bertopic import BERTopic
 import hdbscan
 
@@ -37,9 +37,9 @@ def extract_topics(texts):
     topic_info = topic_model.get_topic_info()
     return topic_info.head(10), topic_model
 
-# --- YouTube API to find similar creators ---
+# YouTube API to find similar creators
 def youtube_search_creators(query, max_results=5):
-    api_key = "AIzaSyCVgFClTVqUKv6QhmR7KZtHrIJ_OrFivpI"  # Replace with your YouTube API key
+    api_key = "YOUR_YOUTUBE_API"  # Replace with your YouTube API key
     youtube = build('youtube', 'v3', developerKey=api_key)
     
     try:
@@ -64,7 +64,7 @@ def youtube_search_creators(query, max_results=5):
         creators.append(channel)
     return creators
 
-# --- Generate personalized content plan ---
+# Generate personalized content plan
 def generate_content_plan(audience, niche, top_topics, sentiment_summary):
     prompt = f"""You are a content strategist AI.
     Audience: {audience}
@@ -75,7 +75,7 @@ def generate_content_plan(audience, niche, top_topics, sentiment_summary):
 """
     return groq_model(prompt)
 
-# --- Analyze draft content ---
+# Analyze draft content
 def analyze_draft(draft_text):
     prompt = f"""
     You are an expert content editor.
